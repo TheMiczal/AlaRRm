@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/78562__joedeshon__alarm-clock-ringing-01.wav-1b810c3279fd4c2a4c7992cf3f15fcfc.sample"
+
+[deps]
+
+source_file="res://Data/Assets/78562__joedeshon__alarm-clock-ringing-01.wav"
+dest_files=[ "res://.import/78562__joedeshon__alarm-clock-ringing-01.wav-1b810c3279fd4c2a4c7992cf3f15fcfc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

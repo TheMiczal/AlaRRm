@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Data/Assets/bg.png" type="Texture" id=1]
+[ext_resource path="res://Data/Assets/78562__joedeshon__alarm-clock-ringing-01.wav" type="AudioStream" id=2]
+[ext_resource path="res://Data/Scenes/Screen.gd" type="Script" id=3]
+[ext_resource path="res://Data/Assets/Century Gothic.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=4]
+size = 64
+outline_size = 4
+outline_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "shake"
+length = 0.1
+loop = true
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -1.03854, 0.0, 1.73054 ]
+}
+
+[node name="Screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 256, 144 )
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = -16.0
+margin_top = -8.0
+margin_right = 528.0
+margin_bottom = 264.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Name" type="Label" parent="TextureRect"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 528.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.905882, 0.227451, 0.2, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "AlaRRm"
+align = 1
+
+[node name="ColorRect2" type="ColorRect" parent="TextureRect"]
+margin_left = 214.0
+margin_top = 200.0
+margin_right = 330.0
+margin_bottom = 250.0
+color = Color( 0.137255, 0.137255, 0.137255, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+margin_left = 216.0
+margin_top = 202.0
+margin_right = 328.0
+margin_bottom = 248.0
+color = Color( 0.862745, 0.858824, 0.858824, 1 )
+
+[node name="Label" type="Label" parent="TextureRect/ColorRect"]
+margin_right = 112.0
+margin_bottom = 46.0
+custom_colors/font_color = Color( 0.137255, 0.137255, 0.137255, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "OK"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="TextureRect/ColorRect"]
+margin_right = 112.0
+margin_bottom = 46.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 1 )
+custom_styles/normal = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "shake"
+anims/RESET = SubResource( 2 )
+anims/shake = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[connection signal="pressed" from="TextureRect/ColorRect/Button" to="." method="_on_Button_pressed"]
